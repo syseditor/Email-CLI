@@ -1,10 +1,10 @@
 # Main file - app runner
 
 import os
-import time
 
 from methods import *
 from decoration import *
+
 
 def cli():
     system = os.name
@@ -13,14 +13,16 @@ def cli():
         os.system("cls")
     else:
         os.system("clear")
-    
+
     # Welcome message
     print(f'''
                                 {color['red']}Welcome to Email-CLI, a CLI used to email people!
                                            {color['magenta']}Credits: syseditor (GitHub)
     ''')
 
-    print(f"{notice} {color['t-pink']}{style['underline']}Respond to the following questions to give the appropriate information to the program\n")
+    print(
+        f"{notice} {color['t-pink']}{style['underline']}Respond to the following questions to give the appropriate "
+        f"information to the program\n")
     # Information gathering
 
     # Sender's email
@@ -52,12 +54,14 @@ def cli():
     clear_line()
 
     # Email preparation
+    result = 1
     try:
         result = send_email(sender, password, recipient, subject, content)
     except Exception as e:
         result = 1
         clear_line()
-        print(f"{warning} {color['t-green']}{style['bold']}{style['underline']}Error{reset}{color['t-pink']}: {color['magenta']}{e}")
+        print(
+            f"{warning} {color['t-green']}{style['bold']}{style['underline']}Error{reset}{color['t-pink']}: {color['magenta']}{e}")
     finally:
         match result:
             case 0:
@@ -71,6 +75,7 @@ def cli():
 
     time.sleep(2)
     input(f"\n{wait} {color['t-pink']}{style['bold']}Press ENTER to exit")
+
 
 if __name__ == "__main__":
     cli()
